@@ -1,7 +1,7 @@
 @rendermode InteractiveWebAssembly
 
-<div class="project">
-    <div class="project-header" @onclick="ToggleCollapsed">
+<div class="project @(!Expanded ? "project-highlight" : "")">
+    <div class="project-header @(Expanded ? "project-highlight" : "")" @onclick="ToggleCollapsed">
         <h2>@Name</h2>
         <span class="@IconCssClass" aria-hidden="true"></span>
     </div>
@@ -15,8 +15,9 @@
     else
     {
         <div class="project-detail">
-            <ImageLink Url="@GitHubUrl" Image="/images/github.svg" Text="GitHub" />
-            <br/>
+            <div class="project-link">
+                <ImageLink Url="@GitHubUrl" Image="/images/github.svg" Text="GitHub" />
+            </div>
             @Detail
         </div>
     }

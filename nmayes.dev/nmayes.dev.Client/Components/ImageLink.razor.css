@@ -1,12 +1,23 @@
 .image-link {
-    color: #28262C;
-    font-weight: bold;
-    display: flex;
+    color: #e8f2ff;
+    font-weight: 700;
+    display: inline-flex;
     align-items: center;
-    column-gap: .5rem;
+    column-gap: 0.6rem;
     text-decoration: none;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.035);
+    transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
 }
 
+    .image-link:hover {
+        transform: translateY(-1px);
+        background: rgba(125, 211, 252, 0.08);
+        border-color: rgba(125, 211, 252, 0.2);
+    }
+
 .image-link span {
-    text-decoration: underline;
+    text-decoration: none;
 }
