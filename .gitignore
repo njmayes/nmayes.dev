@@ -5,3 +5,5 @@ obj/
 #VS files
 .vs/
 .vscode/
+
+publish/

@@ -1,97 +1,20 @@
-// Demo Types
-
-enum class InputError
+enum class TestEnum
 {
-  InvalidChar,
-  InvalidState,
+  OutOfBounds,
+  Unexpected,
+  Other
 };
 
-enum class FormatError
-{
-  InvalidFormatString
-};
+using SmartTestEnum = sl::SmartEnum< TestEnum,
+  sl::Case< TestEnum::OutOfBounds >,
+  sl::Case< TestEnum::Unexpected, std::string_view >,
+  sl::Case< TestEnum::Other >
+>;
 
-using IntInputResult = Result<int, InputError>;
-using StringInputResult = Result<std::string, InputError>;
+SmartTestEnum foo = SmartTestEnum::Make< TestEnum::Unexpected >( "Actual value" );
 
-using InputData = std::tuple<std::string, int>;
-using StringBuilderResult = Result<std::string, FormatError>;
-
-// Demo Helper Functions
-
-IntInputResult GetIntegerInput();
-StringInputResult GetStringInput();
-StringBuilderResult CombineStrings(InputData formatData);
-
-
-// Functional Demo
-
-int main()
-{
-  // Pattern matching
-  auto intInput = GetIntegerInput();
-  MATCH_START(intInput)
-    MATCH_OK(std::cout << "User entered value of " << value << ".\n")
-    MATCH(InputError::InvalidChar, std::cout << "Entered string was not an integer.\n")
-    MATCH(InputError::InvalidState, std::cout << "Entered string was invalid.\n")
-  MATCH_END;
-
-  auto strInput = GetStringInput();
-  MATCH_START(strInput)
-    MATCH_OK(std::cout << "User entered value of " << value << ".\n")
-    MATCH(InputError::InvalidChar, std::cout << "Entered string contained an invalid char.\n")
-    MATCH(InputError::InvalidState, std::cout << "Entered string was invalid.\n")
-  MATCH_END;
-
-  // Do notation
-  auto finalStringResult = Do<std::string>
-  (
-    strInput.and_then<InputData>(
-    [&](std::string&& strVal) 
-    { 
-      return intInput.map<InputData>([&](int intVal) { return std::make_tuple(strVal, intVal); }); 
-    }),
-    NEXT(CombineStrings)
-  );
-
-  std::cout << finalStringResult.unwrap_or("Hello World!") << std::endl;
-}
-
-
-
-// Helper Function Implementaions
-
-IntInputResult GetIntegerInput()
-{
-  int input;
-  if (!(std::cin >> input))
-  {
-    return Err<IntInputResult>(InputError::InvalidChar);
-  }
-
-  return Ok<IntInputResult>(input);
-}
-
-StringInputResult GetStringInput()
-{
-  std::string input;
-  if (!(std::cin >> input))
-  {
-    return Err<StringInputResult>(InputError::InvalidState);
-  }
-
-  return Ok<StringInputResult>(input);
-}
-
-StringBuilderResult CombineStrings(InputData formatData)
-{
-  std::string& fmt = std::get<0>(formatData);
-  int param = std::get<1>(formatData);
-
-  if (fmt.find("{0}") != std::string::npos)
-  {
-    return Ok<StringBuilderResult>(std::format(fmt, param));
-  }
-
-  return Err<StringBuilderResult>(FormatError::InvalidFormatString);
-}
+auto bar = foo.Match(
+  sl::MatchCase< ErrorEnum::OutOfBounds >( [] { return "OutOfBounds"; } ),
+  sl::MatchCase< ErrorEnum::Unexpected >( []( std::string_view value ) { return value; } ),
+  sl::MatchDefault( [] { return "Default"; }
+);

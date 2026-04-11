@@ -11,52 +11,31 @@
             Here you'll find a collection of my personal projects. I have worked on a range of different projects in various different
             languages and domains. However my passion is for low level projects usually written in C++.
         </p>
-        <p>
-            Disclaimer: I often use these projects as fun learning projects, so they do not always represent my best coding standards in a professional environment.
-        </p>
     </section>
     <section class="projects-body">
-        <ProjectElement Name="Labyrinth Engine">
-            <Summary>
-                <p>
-                    A work-in-progress 2D Game Engine written using C++ and OpenGL.
-                </p>
-            </Summary>
-            <Detail>
-                <p>
-                    Labyrinth is a game engine built for designing and creating 2D games. It was created as a learning experiment for me to gain understanding about the
-                    many aspects of game and game engine development. It comes with a work-in-progress editor called Enigma and supports many necessary features for game
-                    development such as Rendering, Event Management, Asset Management, Scene Management, Scripting, Animation, Physics, and Tilemap support.
-                </p>
-                <img class="project-img" src="/images/engine-demo.PNG" />
-                <p class="caption">
-                    The tilemap editor in Labyrinth. Users can create maps combining different tilesets, and can attach scripts and physics to any block.
-                </p>
-            </Detail>
-        </ProjectElement>
         <ProjectElement Name="streamline-cpp">
             <Summary>
                 <p>
-                    A C++20 general purpose application framework.
+                    A C++23 general purpose application framework.
                 </p>
             </Summary>
             <Detail>
                 <p>
-                    streamline-cpp is a general purpose C++20 framework/library that contains a collection of shared code from various projects I have made over the years.
-                    The core of the framework uses a combination of code from my WIP game engine <a href="https://github.com/amayesingnathan/LabyrinthEngine">Labyrinth</a>
+                    streamline-cpp is a general purpose C++23 framework/library that contains a collection of shared code from various projects I have made over the years.
+                    The basis of the library comes from my WIP game engine <a href="https://github.com/amayesingnathan/LabyrinthEngine">Labyrinth</a>
                     and my C++20 Dear ImGui wrapper <a href="https://github.com/amayesingnathan/imgui-cpp">imgui-cpp</a>.
                 </p>
                 <p>
-                    The framework also comes with a collection of utilities that I have found myself implementing on several projects,
-                    as well as other potentially useful tools, such as functional programming ideas including Rust style Result/Option
-                    types and rudimentary pattern matching and Do notation.
+                    This is combined with various other nice utilities such as:
+                    <ul>
+                        <li>Rust-style enum types - transform a C++ enum into a proper sum type with associated data. </li>
+                        <li>Includes a constexpr friendly match function with O(1) dispatch table. </li>
+                        <li>A basic runtime reflection system with an API modelled on C#. </li>
+                        <li>Logging libary - ~3m messages/sec throughput (not at all widely tested, benchmarking included in source). </li>
+                        <li>Memory mapped files (Windows + POSIX support only) </li>
+                    </ul>
                 </p>
-                <CodeBlock Sample="streamline-cpp" />
-                <p>
-                    streamline-cpp also comes with a template project <a href="https://github.com/amayesingnathan/scpp-template">scpp-template</a>,
-                    which contains a collection of Python and batch/bash scripts that can be run to help set up a fresh cross-platform desktop app.
-                    It automatically adds streamline-cpp a dependency and uses premake as a build tool, which is downloaded during setup automatically.
-                </p>
+                <CodeBlock Sample="streamline-cpp"/>
             </Detail>
         </ProjectElement>
         <ProjectElement Name="Gungeon Ally">
@@ -85,42 +64,5 @@
                 <img class="project-img" src="/images/etginventory.png" />
             </Detail>
         </ProjectElement>
-        <ProjectElement Name="imgui-cpp">
-            <Summary>
-                <p>
-                    A modern, safe, C++20 wrapper around Dear ImGui.
-                </p>
-            </Summary>
-            <Detail>
-                <p>
-                    imgui-cpp is a modern C++20 wrapper around the extremely popular GUI framework Dear ImGui. Whilst Dear ImGui is an excellent framework,
-                    it often requires copious amounts of boilerplate, and uses lots of raw pointers and C style strings.
-                </p>
-                <p>
-                    The aim of imgui-cpp was to create a more modern, safer extension to Dear ImGui that enforces stricter rules at compile time
-                    using templates, C++20 concepts, and stronger types such as std::string_view and std::span, while also providing abstractions for widgets that
-                    do more of the work for you.
-                </p>
-                <p>
-                    imgui-cpp also makes use of C++20 modules, which completely overhauls how C++ projects are structured. Unfortunately support for them
-                    in compilers is still somewhat limited.
-                </p>
-                <p class="caption">
-                    A Combobox element with imgui-cpp.
-                </p>
-                <CodeBlock Sample="imgui-cpp" />
-
-                <p class="caption">
-                    The same combobox in raw Dear ImGui.
-                </p>
-                <CodeBlock Sample="imgui" />
-            </Detail>
-        </ProjectElement>
     </section>
 </article>
-
-@code {
-
-
-
-}
