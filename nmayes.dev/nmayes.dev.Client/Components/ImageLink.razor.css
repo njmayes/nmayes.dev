@@ -1,6 +1,7 @@
 .image-link {
     color: #e8f2ff;
-    font-weight: 700;
+    font-size: min(3vw, 1rem);
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
     column-gap: 0.6rem;
@@ -16,6 +17,11 @@
         transform: translateY(-1px);
         background: rgba(125, 211, 252, 0.08);
         border-color: rgba(125, 211, 252, 0.2);
+    }
+
+    .image-link img {
+        width: min(25px, 4vw);
+        height: 25px;
     }
 
 .image-link span {
