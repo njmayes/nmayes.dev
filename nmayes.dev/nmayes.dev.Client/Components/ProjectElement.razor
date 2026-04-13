@@ -1,5 +1,3 @@
-@rendermode InteractiveWebAssembly
-
 <div class="project @(!Expanded ? "project-highlight" : "")">
     <div class="project-header @(Expanded ? "project-highlight" : "")" @onclick="ToggleCollapsed">
         <h2>@Name</h2>
@@ -38,9 +36,8 @@
     private string GitHubUrl { get { return $"https://github.com/njmayes/{Name.Replace(" ", "")}"; } }
     private bool Expanded { get; set; } = false;
 
-    private async Task ToggleCollapsed()
+    private void ToggleCollapsed()
     {
         Expanded = !Expanded;
-        await InvokeAsync(StateHasChanged);
     }
 }
