@@ -8,7 +8,7 @@ on:
 
 jobs:
   redeploy:
-    runs-on: self-hosted
+    runs-on: [self-hosted, home-server]
 
     steps:
       - name: Deploy Prod (master)
