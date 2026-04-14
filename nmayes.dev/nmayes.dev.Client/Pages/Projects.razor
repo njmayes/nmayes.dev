@@ -1,5 +1,6 @@
 @page "/projects"
 @rendermode InteractiveWebAssembly
+@inject IOptions<ProjectLinksOptions> Links
 
 <PageTitle>Projects</PageTitle>
 
@@ -39,7 +40,7 @@
                 <CodeBlock Sample="streamline-cpp"/>
             </Detail>
         </ProjectElement>
-        <ProjectElement Name="Steel Pans" Link="https://pans.nmayes.dev/">
+        <ProjectElement Name="Steel Pans" Link="@Links.Value.SteelPans">
             <Summary>
                 <p>
                     An interactive practice tool for the steel pans.
